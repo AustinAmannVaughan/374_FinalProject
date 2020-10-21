@@ -1,0 +1,65 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+use work.my_components.all;
+
+
+entity bidir_bus is
+   PORT
+   (
+      r0, r1, r2, r3, r4, r5, r6, r7, r8, r9,
+		r10, r11, r12, r13, r14, r15, hi, lo, zhi, zlo,
+		pc, mdr: in std_logic_vector(31 downto 0);
+		
+		encoder_in : in std_logic_vector(31 downto 0);
+		
+		muxout: out std_logic_vector(31 downto 0);
+   );
+END entity;
+
+-----------------------------------------------------
+
+architecture synth of bidir_bus is
+
+signal encoder_to_mux : std_logic_vector(4 downto 0);
+
+begin
+
+the_mux : mux32
+	port map (
+	--change port names to rN to rNx
+		r0 	=> 	r0 ,
+		r1 	=> 	r1 ,
+		r2 	=> 	r2 ,
+		r3 	=> 	r3 ,
+		r4 	=> 	r4 ,
+		r5 	=> 	r5 ,
+		r6 	=> 	r6 ,
+		r7 	=> 	r7 ,
+		r8 	=> 	r8 ,
+		r9 	=> 	r9 ,
+		r10 	=> 	r10,
+		r11 	=> 	r11,
+		r12 	=> 	r12,
+		r13 	=> 	r13,
+		r14 	=> 	r14,
+		r15 	=> 	r15,
+		hi		=>		hi,
+		lo		=>    lo,
+		zhi	=>    zhi,
+		zlo	=>    zlo,
+		pc		=>    pc,
+		mdr	=>    mdr
+	);
+
+the_encoder : encoder_32to5
+	port map (
+		encoder_in => x_in,
+		y_out
+	)
+
+
+
+
+
+end architecture;
